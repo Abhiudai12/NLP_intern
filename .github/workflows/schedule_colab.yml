@@ -1,1 +1,28 @@
+name: Schedule Colab Notebook
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # This will run the action every day at midnight
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  run-notebook:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install nbformat nbconvert papermill
+
+    - name: Run Jupyter Notebook
+      run: |
+        papermill intern2.ipynb output.ipynb
 
