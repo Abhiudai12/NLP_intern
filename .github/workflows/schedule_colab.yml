@@ -12,11 +12,16 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        # Explicitly set the node-version to use for actions/checkout@v2
+        node-version: '16'
 
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
+        # Explicitly set the node-version to use for actions/setup-python@v2
+        node-version: '16'
 
     - name: Install dependencies
       run: |
